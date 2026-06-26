@@ -53,7 +53,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Cross-Origin-Resource-Policy",
-            value: "same-origin",
+            value: "cross-origin",
           },
           // DNS prefetch for performance
           {
@@ -69,7 +69,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "img-src 'self' data: blob: https://images.unsplash.com https://*.clerk.com https://img.clerk.com",
               "font-src 'self' https://fonts.gstatic.com",
-              "connect-src 'self' https://*.clerk.accounts.dev https://*.clerk.com https://api.clerk.com",
+              "connect-src 'self' https://*.clerk.accounts.dev https://*.clerk.com https://api.clerk.com https://api.resend.com",
               "frame-src 'self' https://*.clerk.accounts.dev https://challenges.cloudflare.com",
               "worker-src 'self' blob:",
               "object-src 'none'",

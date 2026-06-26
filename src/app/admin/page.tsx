@@ -41,11 +41,8 @@ function DashboardSkeleton() {
   );
 }
 
-const AUTHORIZED_ADMINS = [
-  "muhdsalman302@gmail.com"
-];
-
 export default function AdminDashboard() {
+  // Auth is enforced server-side in layout.tsx — if we reach here, user is authorized
   const { user, isLoaded } = useUser();
   const eventsCount = 120;
   const programsCount = 45;
@@ -55,15 +52,6 @@ export default function AdminDashboard() {
   }
 
   const userEmail = user?.primaryEmailAddress?.emailAddress;
-
-  if (!user || !userEmail || !AUTHORIZED_ADMINS.includes(userEmail)) {
-    return (
-      <div className="container mx-auto p-12 mt-16 text-center">
-        <h1 className="text-2xl font-bold text-red-500">Access Denied</h1>
-        <p className="text-muted-foreground mt-2">You do not have administrative privileges to view this page.</p>
-      </div>
-    );
-  }
 
   return (
     <div className="container mx-auto p-4 sm:p-6 md:p-12 mt-16 max-w-7xl">

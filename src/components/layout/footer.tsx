@@ -131,16 +131,12 @@ export function Footer() {
         <div className="pt-10 border-t border-border/20 flex flex-col md:flex-row justify-between items-center gap-8 relative">
           
           {/* 3D Newsletter Pill */}
-          <div className="bg-background/80 backdrop-blur-xl border border-border/30 rounded-full p-2 flex items-center max-w-md w-full shadow-[inset_0_1px_4px_rgba(255,255,255,0.05),_0_10px_30px_-10px_rgba(0,0,0,0.3)]">
-            <input 
-              type="email" 
-              placeholder="Subscribe to newsletter" 
-              className="bg-transparent border-none outline-none px-6 w-full text-foreground placeholder:text-muted-foreground/60 text-sm font-light"
-            />
-            <button className="btn-3d px-6 py-2.5 rounded-full text-sm font-semibold shrink-0 cursor-pointer flex items-center group">
-              Join <ExternalLink className="ml-2 h-4 w-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-            </button>
-          </div>
+          <Link href="/contact" className="bg-background/80 backdrop-blur-xl border border-border/30 rounded-full p-2 pl-6 flex items-center max-w-md w-full shadow-[inset_0_1px_4px_rgba(255,255,255,0.05),_0_10px_30px_-10px_rgba(0,0,0,0.3)] group hover:border-primary/30 transition-colors">
+            <span className="text-muted-foreground/80 text-sm font-light flex-1">Have a question? Reach out to us</span>
+            <span className="btn-3d px-6 py-2.5 rounded-full text-sm font-semibold shrink-0 cursor-pointer flex items-center">
+              Contact <ExternalLink className="ml-2 h-4 w-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+            </span>
+          </Link>
 
           <p className="text-muted-foreground text-sm font-light flex items-center">
             &copy; {currentYear} IgnoVex <span className="mx-2 w-1.5 h-1.5 rounded-full bg-primary/40 inline-block" /> All rights reserved.

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { CalendarDays, MapPin, Building2, Microscope, ArrowUpRight, Sparkles, HeartPulse, Stethoscope, Users, Presentation } from "lucide-react";
 import { useRef } from "react";
@@ -244,10 +245,10 @@ export default function EventsPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-50 mix-blend-overlay" />
           <h3 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-3 sm:mb-4 relative z-10 drop-shadow-sm">Want to host a visit?</h3>
           <p className="text-muted-foreground text-sm sm:text-base lg:text-lg mb-8 sm:mb-10 relative z-10 max-w-xl">Partner with IgnoVex to train the next generation of healthcare professionals and leaders.</p>
-          <button className="relative z-10 btn-3d px-8 sm:px-10 py-4 sm:py-5 rounded-full font-semibold text-base sm:text-lg flex items-center group">
+          <Link href="/contact" className="relative z-10 btn-3d px-8 sm:px-10 py-4 sm:py-5 rounded-full font-semibold text-base sm:text-lg flex items-center group">
             Contact Partnerships
             <ArrowUpRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:rotate-12 transition-transform" />
-          </button>
+          </Link>
         </div>
       </motion.div>
     </div>
