@@ -1,151 +1,246 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, BookOpen, Users, Calendar, Trophy, Sparkles } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, Microscope, Activity, ArrowUpRight, CheckCircle2, Factory, Stethoscope } from "lucide-react";
 import { useRef } from "react";
 
+// Enterprise-grade homepage components
 export default function Home() {
-  const containerRef = useRef(null);
+  const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
+    target: heroRef,
+    offset: ["start start", "end start"]
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  // High quality Unsplash medical/tech student images
-  const bgImages = [
-    "https://images.unsplash.com/photo-1576091160550-2173ff9e5ee5?auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80",
-  ];
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section ref={containerRef} className="relative w-full h-[100vh] overflow-hidden flex items-center justify-center">
-        {/* Dynamic Image Grid Background */}
-        <div className="absolute inset-0 -z-30 w-[120%] h-[120%] -translate-x-[10%] -translate-y-[10%] grid grid-cols-2 md:grid-cols-4 gap-4 opacity-40 dark:opacity-20 rotate-12 scale-125 pointer-events-none">
-          {bgImages.map((src, i) => (
-            <motion.div 
-              key={i}
-              style={{ y: i % 2 === 0 ? y1 : y2 }}
-              className="relative w-full h-[800px] rounded-3xl overflow-hidden shadow-2xl"
+      
+      {/* 3D Organic Background Blob */}
+      <div className="fixed top-[-20%] right-[-10%] blob w-[80vw] h-[80vw] md:w-[800px] md:h-[800px] bg-primary/20 z-[-1]" />
+      <div className="fixed bottom-[-20%] left-[-10%] blob w-[60vw] h-[60vw] md:w-[600px] md:h-[600px] bg-indigo-500/10 z-[-1]" style={{ animationDelay: "3s" }} />
+
+      {/* ===== HERO SECTION ===== */}
+      <section ref={heroRef} className="relative pt-28 sm:pt-36 lg:pt-48 pb-16 sm:pb-24 lg:pb-32 overflow-hidden border-b border-border/10">
+        <motion.div style={{ y: heroY, opacity: heroOpacity }} className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="max-w-5xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 1, type: "spring", bounce: 0.4 }}
             >
-              <img src={src} alt="Medical Students" className="w-full h-full object-cover" />
+              <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-medium text-primary mb-6 sm:mb-8 shadow-[inset_0_1px_4px_rgba(255,255,255,0.1)] backdrop-blur-md">
+                <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse mr-2"></span>
+                Empowering the Next Generation of Healthcare Leaders
+              </div>
+              
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter mb-6 sm:mb-8 bg-clip-text text-transparent bg-gradient-to-br from-foreground via-foreground/90 to-primary drop-shadow-sm leading-[1.1]">
+                Ignite Healthcare & <br className="hidden sm:block" />
+                <span className="text-gradient font-black">Innovation Forum.</span>
+              </h1>
+              
+              <p className="text-muted-foreground text-base sm:text-lg md:text-xl lg:text-2xl font-light mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-2">
+                Bridging the gap between academic learning and practical exposure. Join IgnoVex for structured clinical rotations, industrial tours, and expert-led healthcare seminars.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+                <Link href="/programs" className="w-full sm:w-auto">
+                  <button className="btn-3d w-full sm:w-auto h-13 sm:h-14 px-6 sm:px-8 rounded-full font-bold text-base sm:text-lg inline-flex items-center justify-center group">
+                    Explore Programs
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </Link>
+                <Link href="/events" className="w-full sm:w-auto">
+                  <button className="btn-3d-secondary w-full sm:w-auto h-13 sm:h-14 px-6 sm:px-8 rounded-full font-bold text-base sm:text-lg inline-flex items-center justify-center group">
+                    View Recent Visits
+                  </button>
+                </Link>
+              </div>
             </motion.div>
-          ))}
-        </div>
-
-        {/* Heavy Glass Overlay */}
-        <div className="absolute inset-0 -z-20 bg-background/70 backdrop-blur-[8px] dark:bg-background/80 dark:backdrop-blur-[12px]" />
-        
-        {/* Ambient Glow Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] -z-10 mix-blend-multiply dark:mix-blend-lighten opacity-80 animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-violet-500/20 rounded-full blur-[120px] -z-10 mix-blend-multiply dark:mix-blend-lighten opacity-80" />
-
-        <motion.div 
-          style={{ opacity }}
-          className="container px-4 md:px-6 flex flex-col items-center text-center space-y-10 relative z-10 pt-20"
-        >
-          <motion.div 
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="inline-flex items-center rounded-full border border-primary/30 px-5 py-2 text-sm font-medium bg-background/60 backdrop-blur-xl shadow-2xl shadow-primary/10"
-          >
-            <Sparkles className="h-4 w-4 text-primary mr-2" />
-            <span className="text-foreground/90 tracking-wide">Empowering 45,000+ Medical & Tech Students Globally</span>
-          </motion.div>
-          
-          <motion.h1 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: "easeOut", delay: 0.1 }}
-            className="text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter max-w-6xl leading-[1.1] drop-shadow-lg text-foreground"
-          >
-            Redefining Your <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-blue-500 to-primary drop-shadow-xl inline-block pb-4">
-              Future Today.
-            </span>
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="text-xl md:text-2xl text-foreground/70 max-w-3xl font-light leading-relaxed"
-          >
-            A world-class platform designed to elevate your journey through premium learning, clinical internships, and elite professional mentorship.
-          </motion.p>
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-6 pt-8"
-          >
-            <Link 
-              href="/programs" 
-              className="group relative inline-flex h-16 items-center justify-center rounded-full bg-foreground px-12 text-lg font-medium text-background shadow-2xl transition-all hover:scale-105 hover:shadow-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring overflow-hidden"
-            >
-              <span className="relative z-10 flex items-center">
-                Explore Programs
-                <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-2" />
-              </span>
-              <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-            </Link>
-            <Link 
-              href="/contact" 
-              className="inline-flex h-16 items-center justify-center rounded-full border border-border/50 bg-background/30 backdrop-blur-xl px-12 text-lg font-medium shadow-lg transition-all hover:bg-background/80 hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring hover:scale-105"
-            >
-              Get in Touch
-            </Link>
-          </motion.div>
+          </div>
         </motion.div>
       </section>
 
-      {/* Features Section - Lavish Cards (30% Secondary Structural Color) */}
-      <section className="py-32 bg-secondary text-secondary-foreground relative border-t border-border/30 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-secondary to-secondary" />
-        
-        {/* Decorative elements for artistic glory */}
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-50" />
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] -z-10 mix-blend-screen" />
-
-        <div className="container px-6 mx-auto relative z-10">
-          <div className="text-center mb-24">
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-secondary-foreground">Designed for Excellence</h2>
-            <p className="text-secondary-foreground/80 text-xl max-w-3xl mx-auto font-light">Equipping medical and technology students with the tools to succeed in modern landscapes, crafted with unparalleled elegance.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {/* ===== STATISTICS SECTION ===== */}
+      <section className="py-16 sm:py-20 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
             {[
-              { icon: BookOpen, title: "Elite Programs", desc: "Curated curriculums by industry leaders.", color: "text-primary", bg: "bg-primary/10" },
-              { icon: Calendar, title: "Global Events", desc: "Access to world-class seminars and summits.", color: "text-blue-300", bg: "bg-blue-300/10" },
-              { icon: Users, title: "1:1 Mentorship", desc: "Direct guidance from top-tier professionals.", color: "text-primary", bg: "bg-primary/10" },
-              { icon: Trophy, title: "Internships", desc: "Exclusive placement opportunities globally.", color: "text-blue-300", bg: "bg-blue-300/10" }
-            ].map((feature, i) => (
-              <motion.div 
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, delay: i * 0.15, ease: "easeOut" }}
-                key={i} 
-                className="group flex flex-col items-center text-center p-10 bg-background/5 backdrop-blur-md rounded-[2.5rem] shadow-sm border border-secondary-foreground/10 hover:shadow-2xl hover:border-primary/50 transition-all duration-500 cursor-pointer"
+              { label: "Active Students", value: "45K+", color: "from-emerald-400 to-teal-500" },
+              { label: "Hospital Visits", value: "20+", color: "from-blue-400 to-indigo-500" },
+              { label: "Industrial Tours", value: "15+", color: "from-amber-400 to-orange-500" },
+              { label: "Expert Seminars", value: "50+", color: "from-purple-400 to-pink-500" },
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30, rotateX: -20 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: i * 0.1, type: "spring" }}
+                className="card-3d bg-card border border-border/10 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 text-center flex flex-col items-center justify-center relative overflow-hidden"
+                style={{ perspective: 1000 }}
               >
-                <div className={`h-24 w-24 rounded-3xl ${feature.bg} flex items-center justify-center mb-8 ${feature.color} group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-inner ring-1 ring-white/10`}>
-                  <feature.icon className="h-10 w-10" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-secondary-foreground">{feature.title}</h3>
-                <p className="text-secondary-foreground/70 text-lg leading-relaxed font-light">{feature.desc}</p>
+                <div className={`absolute -inset-4 bg-gradient-to-br ${stat.color} opacity-[0.03]`} />
+                <h3 className={`text-3xl sm:text-4xl md:text-5xl font-black bg-clip-text text-transparent bg-gradient-to-br ${stat.color} mb-1 sm:mb-2 drop-shadow-sm`}>
+                  {stat.value}
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base text-muted-foreground font-medium uppercase tracking-wider">{stat.label}</p>
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ===== PHARMACY OPPORTUNITIES BENTO GRID ===== */}
+      <section className="py-16 sm:py-24 lg:py-32 relative z-10 bg-background/50 backdrop-blur-3xl border-y border-border/10">
+        <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 tracking-tight text-foreground">Our Core Offerings</h2>
+            <p className="text-muted-foreground text-base sm:text-lg lg:text-xl font-light max-w-2xl mx-auto">
+              We provide enterprise-grade exposure for pharmacy students across all sectors of the healthcare industry.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+            {/* Main Feature - Industrial */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, type: "spring" }}
+              className="md:col-span-2 card-3d glass-card rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-8 lg:p-12 relative overflow-hidden group"
+            >
+              <div className="absolute top-0 right-0 p-6 sm:p-8 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+                <Factory className="h-28 sm:h-40 w-28 sm:w-40" />
+              </div>
+              <div className="relative z-10 flex flex-col h-full justify-between">
+                <div>
+                  <div className="h-14 w-14 sm:h-16 sm:w-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white mb-6 sm:mb-8 shadow-lg shadow-orange-500/20">
+                    <Factory className="h-7 w-7 sm:h-8 sm:w-8" />
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Industrial Manufacturing Tours</h3>
+                  <p className="text-muted-foreground font-light text-base sm:text-lg mb-6 sm:mb-8 max-w-md leading-relaxed">
+                    Exclusive visits to WHO-prequalified facilities like Getz Pharma and PharmEvo. Understand GMP, packaging, and QA/QC at an industrial scale.
+                  </p>
+                </div>
+                <ul className="space-y-2 sm:space-y-3">
+                  {['Automated Packaging Lines', 'Sterile Manufacturing', 'Quality Control Labs'].map((item, i) => (
+                    <li key={i} className="flex items-center text-foreground font-medium text-sm sm:text-base">
+                      <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5 text-amber-500 mr-2 sm:mr-3 shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+
+            {/* Feature 2 - Clinical */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1, type: "spring" }}
+              className="card-3d glass-card rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-8 lg:p-10 relative overflow-hidden group"
+            >
+              <div className="absolute top-0 right-0 p-6 sm:p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+                <Stethoscope className="h-24 sm:h-32 w-24 sm:w-32" />
+              </div>
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl bg-gradient-to-br from-rose-400 to-pink-500 flex items-center justify-center text-white mb-5 sm:mb-6 shadow-lg shadow-pink-500/20">
+                  <Stethoscope className="h-6 w-6 sm:h-7 sm:w-7" />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Clinical Rotations</h3>
+                <p className="text-muted-foreground font-light text-sm sm:text-base mb-4 sm:mb-6">
+                  Hands-on experience in premium facilities like South City and Jamal Noor Hospital.
+                </p>
+                <div className="mt-auto">
+                  <Link href="/events" className="text-rose-500 font-semibold inline-flex items-center group-hover:translate-x-1 transition-transform text-sm sm:text-base">
+                    View Hospitals <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Feature 3 - Research */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2, type: "spring" }}
+              className="card-3d glass-card rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-8 lg:p-10 relative overflow-hidden group"
+            >
+              <div className="absolute top-0 right-0 p-6 sm:p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+                <Microscope className="h-24 sm:h-32 w-24 sm:w-32" />
+              </div>
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center text-white mb-5 sm:mb-6 shadow-lg shadow-purple-500/20">
+                  <Microscope className="h-6 w-6 sm:h-7 sm:w-7" />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Research & Seminars</h3>
+                <p className="text-muted-foreground font-light text-sm sm:text-base mb-4 sm:mb-6">
+                  Engage with academic veterans at Ziauddin University and understand the future of R&D.
+                </p>
+                <div className="mt-auto">
+                  <Link href="/programs" className="text-violet-500 font-semibold inline-flex items-center group-hover:translate-x-1 transition-transform text-sm sm:text-base">
+                    View Programs <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+
+             {/* Feature 4 - Networking */}
+             <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3, type: "spring" }}
+              className="md:col-span-2 card-3d glass-card rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-8 lg:p-12 relative overflow-hidden group"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="relative z-10 flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
+                <div className="h-16 w-16 sm:h-20 sm:w-20 shrink-0 rounded-[1.5rem] sm:rounded-[2rem] bg-gradient-to-br from-blue-400 to-primary flex items-center justify-center text-white shadow-xl shadow-primary/20">
+                  <Activity className="h-8 w-8 sm:h-10 sm:w-10" />
+                </div>
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-3 text-center sm:text-left">Global Healthcare Network</h3>
+                  <p className="text-muted-foreground font-light text-base sm:text-lg mb-0 max-w-2xl leading-relaxed text-center sm:text-left">
+                    Build professional networking opportunities with national and international speakers. IgnoVex connects you directly to the leaders shaping the healthcare industry.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== BOTTOM CTA ===== */}
+      <section className="py-20 sm:py-28 lg:py-32 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, type: "spring" }}
+            className="max-w-5xl mx-auto rounded-[2rem] sm:rounded-[3rem] p-8 sm:p-12 lg:p-20 text-center relative overflow-hidden card-3d bg-card border border-border/20"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-indigo-500/10" />
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 relative z-10 tracking-tight drop-shadow-sm">Ready to elevate your career?</h2>
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 sm:mb-10 font-light max-w-2xl mx-auto relative z-10">
+              Join the Ignite Healthcare & Innovation Forum today and start your journey with top-tier industrial and clinical exposure.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 relative z-10">
+              <Link href="/programs" className="w-full sm:w-auto">
+                <button className="btn-3d w-full sm:w-auto h-14 sm:h-16 px-8 sm:px-10 rounded-full font-bold text-base sm:text-lg inline-flex items-center justify-center group">
+                  Join Programs
+                  <ArrowUpRight className="ml-2 h-5 w-5 sm:h-6 sm:w-6 group-hover:rotate-12 transition-transform" />
+                </button>
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

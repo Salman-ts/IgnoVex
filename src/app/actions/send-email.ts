@@ -4,7 +4,22 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function sendContactEmail(formData: FormData) {
+export type ContactFormState = {
+  error?: string;
+  success?: boolean;
+  data?: any;
+  fieldErrors?: {
+    firstName?: string[];
+    lastName?: string[];
+    email?: string[];
+    phone?: string[];
+    subject?: string[];
+    message?: string[];
+    [key: string]: string[] | undefined;
+  };
+};
+
+export async function sendContactEmail(prevState: ContactFormState | undefined | null, formData: FormData): Promise<ContactFormState> {
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
   const message = formData.get("message") as string;

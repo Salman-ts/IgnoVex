@@ -1,120 +1,135 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code, Cpu, BookOpen, Terminal, ArrowRight, Zap, Globe, LayoutTemplate } from "lucide-react";
+import { BookOpen, Stethoscope, Briefcase, Microscope, Factory, CheckCircle2, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import type { LucideIcon } from "lucide-react";
+
+interface Program {
+  id: string;
+  title: string;
+  icon: LucideIcon;
+  desc: string;
+  color: string;
+  bg: string;
+  gradient: string;
+  features: string[];
+}
+
+const programs: Program[] = [
+  {
+    id: "clinical",
+    title: "Clinical Pharmacy Practice",
+    icon: Stethoscope,
+    desc: "Advanced rotations in premium hospitals like South City and Jamal Noor. Learn inpatient dispensing, therapeutic monitoring, and multidisciplinary care.",
+    color: "text-rose-400",
+    bg: "bg-rose-500/10",
+    gradient: "from-rose-500/20 to-pink-500/5",
+    features: ["Prescription Auditing", "Patient Counseling", "Ward Rounds"]
+  },
+  {
+    id: "industrial",
+    title: "Industrial Manufacturing",
+    icon: Factory,
+    desc: "Hands-on tours and internships at WHO-prequalified facilities. Master the art of scalable drug production, GMP compliance, and packaging.",
+    color: "text-amber-400",
+    bg: "bg-amber-500/10",
+    gradient: "from-amber-500/20 to-orange-500/5",
+    features: ["Sterile Manufacturing", "QA / QC Labs", "Supply Chain"]
+  },
+  {
+    id: "research",
+    title: "Drug Discovery & R&D",
+    icon: Microscope,
+    desc: "Dive into cutting-edge research methodologies. Participate in exclusive seminars at leading academic institutions like Ziauddin University.",
+    color: "text-violet-400",
+    bg: "bg-violet-500/10",
+    gradient: "from-violet-500/20 to-purple-500/5",
+    features: ["Formulation Science", "Clinical Trials", "Academic Publishing"]
+  },
+  {
+    id: "regulatory",
+    title: "Regulatory & Corporate Affairs",
+    icon: Briefcase,
+    desc: "Understand the business side of pharma. Engage with companies like Mediate Pharma to learn marketing, distribution, and global regulations.",
+    color: "text-emerald-400",
+    bg: "bg-emerald-500/10",
+    gradient: "from-emerald-500/20 to-teal-500/5",
+    features: ["Product Registration", "Pharma Marketing", "Global Guidelines"]
+  }
+];
 
 export default function ProgramsPage() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 24 } }
-  };
 
   return (
-    <div className="min-h-screen bg-background pb-32">
-      <div className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[500px] bg-primary/10 rounded-full blur-[120px] -z-10 mix-blend-multiply dark:mix-blend-lighten" />
-        <div className="container mx-auto px-6 text-center">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6"
+    <div className="min-h-screen bg-background pb-20 sm:pb-32 overflow-hidden">
+      {/* Background Organic Blobs */}
+      <div className="blob w-[70vw] h-[70vw] md:w-[900px] md:h-[900px] bg-primary/10 top-[-10%] right-[-20%]" />
+      <div className="blob w-[50vw] h-[50vw] md:w-[700px] md:h-[700px] bg-emerald-500/10 bottom-[10%] left-[-20%]" style={{ animationDelay: "2s" }} />
+
+      <div className="relative pt-28 sm:pt-36 lg:pt-40 pb-12 sm:pb-16 lg:pb-24 border-b border-border/10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 text-center max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
           >
-            Programs built for <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-violet-600">the modern era.</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-xl text-muted-foreground max-w-2xl mx-auto font-light"
-          >
-            A curated ecosystem of elite curriculums. From full-stack engineering to clinical data science, we equip you with the skills to dominate.
-          </motion.p>
+            <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-4 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-primary mb-6 sm:mb-8 shadow-[inset_0_1px_4px_rgba(255,255,255,0.1),_0_0_30px_-5px_rgba(59,130,246,0.3)] backdrop-blur-md">
+              <BookOpen className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" /> Our Curriculum
+            </span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/60 drop-shadow-sm leading-[1.1]">
+              Comprehensive <span className="text-gradient">Programs.</span>
+            </h1>
+            <p className="text-muted-foreground text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed max-w-2xl mx-auto px-2">
+              Designed specifically to elevate Pharm-D students from academic learners to industry-ready professionals.
+            </p>
+          </motion.div>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]"
-        >
-          {/* Bento Box 1: Large Feature */}
-          <motion.div variants={itemVariants} className="md:col-span-2 md:row-span-2 group relative overflow-hidden bg-card rounded-[2.5rem] border border-border/50 p-10 flex flex-col justify-end transition-all hover:shadow-2xl hover:border-primary/30">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 transition-transform group-hover:scale-110 duration-700" />
-            <div className="absolute top-10 left-10 p-4 bg-background/80 backdrop-blur-md rounded-2xl shadow-sm">
-              <Code className="h-8 w-8 text-primary" />
-            </div>
-            <div className="relative z-10">
-              <div className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary mb-4">
-                <Zap className="h-4 w-4 mr-1" /> Most Popular
-              </div>
-              <h2 className="text-4xl font-bold mb-4">Full-Stack Engineering</h2>
-              <p className="text-muted-foreground text-lg mb-8 max-w-md font-light">
-                Master React, Next.js, Node, and modern cloud architectures in a rigorous 12-week intensive.
-              </p>
-              <button className="flex items-center text-sm font-medium hover:text-primary transition-colors group/btn">
-                View Syllabus <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-              </button>
-            </div>
-          </motion.div>
-
-          {/* Bento Box 2: Tall Feature */}
-          <motion.div variants={itemVariants} className="md:col-span-1 md:row-span-2 group relative overflow-hidden bg-card rounded-[2.5rem] border border-border/50 p-10 flex flex-col transition-all hover:shadow-2xl hover:border-violet-500/30">
-            <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-violet-500/10 to-transparent" />
-            <div className="p-4 bg-background/80 backdrop-blur-md rounded-2xl shadow-sm w-max mb-8">
-              <Cpu className="h-8 w-8 text-violet-500" />
-            </div>
-            <h2 className="text-3xl font-bold mb-4">Data Science & AI</h2>
-            <p className="text-muted-foreground font-light mb-auto">
-              Dive deep into machine learning, Python data pipelines, and predictive clinical analytics.
-            </p>
-            <button className="flex items-center text-sm font-medium hover:text-violet-500 transition-colors group/btn mt-8">
-              Explore Track <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-            </button>
-          </motion.div>
-
-          {/* Bento Box 3: Standard Feature */}
-          <motion.div variants={itemVariants} className="md:col-span-1 md:row-span-1 group relative overflow-hidden bg-card rounded-[2rem] border border-border/50 p-8 flex flex-col transition-all hover:shadow-xl hover:border-emerald-500/30">
-            <div className="flex justify-between items-start mb-auto">
-              <div className="p-3 bg-background/80 backdrop-blur-md rounded-xl shadow-sm">
-                <LayoutTemplate className="h-6 w-6 text-emerald-500" />
-              </div>
-            </div>
-            <h3 className="text-2xl font-bold mt-6 mb-2">UI/UX Design</h3>
-            <p className="text-muted-foreground text-sm font-light">Craft stunning, user-centric interfaces.</p>
-          </motion.div>
-
-          {/* Bento Box 4: Standard Feature */}
-          <motion.div variants={itemVariants} className="md:col-span-1 md:row-span-1 group relative overflow-hidden bg-card rounded-[2rem] border border-border/50 p-8 flex flex-col transition-all hover:shadow-xl hover:border-orange-500/30">
-            <div className="flex justify-between items-start mb-auto">
-              <div className="p-3 bg-background/80 backdrop-blur-md rounded-xl shadow-sm">
-                <Globe className="h-6 w-6 text-orange-500" />
-              </div>
-            </div>
-            <h3 className="text-2xl font-bold mt-6 mb-2">Cloud Architecture</h3>
-            <p className="text-muted-foreground text-sm font-light">Scale systems across AWS and GCP.</p>
-          </motion.div>
-
-          {/* Bento Box 5: Wide Feature */}
-          <motion.div variants={itemVariants} className="md:col-span-1 md:row-span-1 group relative overflow-hidden bg-gradient-to-br from-primary to-violet-600 rounded-[2rem] p-8 flex flex-col justify-center text-white transition-all hover:shadow-2xl hover:scale-[1.02]">
-            <h3 className="text-2xl font-bold mb-2">Enterprise Ready.</h3>
-            <p className="text-white/80 font-light mb-6">Designed to match Tier-1 tech giant standards.</p>
-            <button className="bg-white text-primary px-6 py-2 rounded-full font-medium text-sm w-max hover:bg-white/90 transition-colors shadow-lg">
-              Apply Now
-            </button>
-          </motion.div>
-        </motion.div>
+      <div className="container mx-auto px-4 sm:px-6 py-16 sm:py-20 lg:py-24 max-w-6xl relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 lg:gap-12">
+          {programs.map((prog, i) => {
+            const IconComponent = prog.icon;
+            return (
+              <motion.div
+                key={prog.id}
+                initial={{ opacity: 0, y: 40, rotateX: 10 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: i * 0.1, type: "spring" }}
+                className="card-3d glass-card rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-8 lg:p-10 relative overflow-hidden group border border-border/10 flex flex-col"
+              >
+                <div className={`absolute -inset-4 bg-gradient-to-br ${prog.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-2xl -z-10`} />
+                
+                <div className={`h-14 w-14 sm:h-16 sm:w-16 rounded-2xl ${prog.bg} flex items-center justify-center mb-6 sm:mb-8 border border-white/5 shadow-inner`}>
+                  <IconComponent className={`h-7 w-7 sm:h-8 sm:w-8 ${prog.color}`} />
+                </div>
+                
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 tracking-tight drop-shadow-sm">{prog.title}</h2>
+                <p className="text-muted-foreground font-light text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 leading-relaxed">
+                  {prog.desc}
+                </p>
+                
+                <ul className="space-y-3 sm:space-y-4 mb-8 sm:mb-10 border-t border-border/20 pt-6 sm:pt-8">
+                  {prog.features.map((feat, idx) => (
+                    <li key={idx} className="flex items-center text-foreground font-medium text-sm sm:text-base">
+                      <CheckCircle2 className={`h-4 w-4 sm:h-5 sm:w-5 ${prog.color} mr-2 sm:mr-3 shrink-0`} />
+                      {feat}
+                    </li>
+                  ))}
+                </ul>
+                
+                <div className="mt-auto">
+                  <Link href="/events" className="btn-3d w-full py-3.5 sm:py-4 rounded-xl font-bold inline-flex items-center justify-center group cursor-pointer shadow-lg text-sm sm:text-base">
+                    View Related Events
+                    <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
