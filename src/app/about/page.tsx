@@ -81,7 +81,7 @@ export default function AboutPage() {
               <motion.div
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-50px" }}
                 variants={fadeInUp}
                 className="space-y-6"
               >
@@ -114,7 +114,7 @@ export default function AboutPage() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
                 whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, type: "spring" }}
                 className="relative"
               >

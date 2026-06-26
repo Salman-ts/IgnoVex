@@ -143,7 +143,7 @@ export default function ContactPage() {
                       name="firstName"
                       type="text" 
                       maxLength={100}
-                      className="w-full h-12 sm:h-14 rounded-xl sm:rounded-2xl bg-background/50 border border-border/30 px-4 sm:px-5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-inner text-sm sm:text-base"
+                      className="w-full h-12 sm:h-14 rounded-xl sm:rounded-2xl bg-background/50 border border-border/30 px-4 sm:px-5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-inner text-base"
                       placeholder="John"
                     />
                     {state.fieldErrors?.firstName && (
@@ -157,7 +157,7 @@ export default function ContactPage() {
                       name="lastName"
                       type="text" 
                       maxLength={100}
-                      className="w-full h-12 sm:h-14 rounded-xl sm:rounded-2xl bg-background/50 border border-border/30 px-4 sm:px-5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-inner text-sm sm:text-base"
+                      className="w-full h-12 sm:h-14 rounded-xl sm:rounded-2xl bg-background/50 border border-border/30 px-4 sm:px-5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-inner text-base"
                       placeholder="Doe"
                     />
                     {state.fieldErrors?.lastName && (
@@ -173,7 +173,7 @@ export default function ContactPage() {
                     name="email"
                     type="email" 
                     maxLength={254}
-                    className="w-full h-12 sm:h-14 rounded-xl sm:rounded-2xl bg-background/50 border border-border/30 px-4 sm:px-5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-inner text-sm sm:text-base"
+                    className="w-full h-12 sm:h-14 rounded-xl sm:rounded-2xl bg-background/50 border border-border/30 px-4 sm:px-5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-inner text-base"
                     placeholder="john@hospital.com"
                   />
                   {state.fieldErrors?.email && (
@@ -186,7 +186,7 @@ export default function ContactPage() {
                   <select 
                     id="subject"
                     name="subject"
-                    className="w-full h-12 sm:h-14 rounded-xl sm:rounded-2xl bg-background/50 border border-border/30 px-4 sm:px-5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all appearance-none shadow-inner text-sm sm:text-base"
+                    className="w-full h-12 sm:h-14 rounded-xl sm:rounded-2xl bg-background/50 border border-border/30 px-4 sm:px-5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all appearance-none shadow-inner text-base"
                   >
                     <option value="">Select a subject...</option>
                     <option value="Host a Hospital/Industrial Visit">Host a Hospital/Industrial Visit</option>
@@ -207,7 +207,7 @@ export default function ContactPage() {
                     rows={5}
                     minLength={10}
                     maxLength={5000}
-                    className="w-full rounded-xl sm:rounded-2xl bg-background/50 border border-border/30 p-4 sm:p-5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none shadow-inner text-sm sm:text-base"
+                    className="w-full rounded-xl sm:rounded-2xl bg-background/50 border border-border/30 p-4 sm:p-5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none shadow-inner text-base"
                     placeholder="How can we collaborate?"
                   />
                   {state.fieldErrors?.message && (

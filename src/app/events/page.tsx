@@ -236,7 +236,7 @@ export default function EventsPage() {
       <motion.div 
         initial={{ opacity: 0, y: 50, scale: 0.9 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.8, type: "spring" }}
         className="container mx-auto px-4 sm:px-5 mt-10 text-center relative z-10"
       >

@@ -22,7 +22,7 @@ const jakarta = Plus_Jakarta_Sans({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 5,
+  maximumScale: 1,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
     { media: "(prefers-color-scheme: dark)", color: "#001233" },
@@ -61,16 +61,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="overflow-x-hidden" data-scroll-behavior="smooth">
 
-      <body suppressHydrationWarning className={`${inter.variable} ${jakarta.variable} font-sans antialiased min-h-screen flex flex-col`}>
+      <body suppressHydrationWarning className={`${inter.variable} ${jakarta.variable} font-sans antialiased min-h-screen flex flex-col overflow-x-hidden`}>
         <ClerkProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            <Navbar />
-            <main className="flex-1 w-full">
-              {children}
-            </main>
-            <Footer />
+            <div className="flex flex-col min-h-screen w-full overflow-x-hidden relative">
+              <Navbar />
+              <main className="flex-1 w-full">
+                {children}
+              </main>
+              <Footer />
+            </div>
           </ThemeProvider>
         </ClerkProvider>
       </body>

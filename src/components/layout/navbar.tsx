@@ -20,7 +20,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-border/20 bg-background/80 backdrop-blur-md shadow-[inset_0_1px_4px_rgba(255,255,255,0.1),_0_4px_10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer z-50 group"
+      className="relative inline-flex h-12 w-12 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border/20 bg-background/80 backdrop-blur-md shadow-[inset_0_1px_4px_rgba(255,255,255,0.1),_0_4px_10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer z-50 group"
       aria-label="Toggle theme"
     >
       <div className="absolute inset-0 rounded-full bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -170,7 +170,7 @@ export function Navbar() {
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-border/20 glass-card shadow-[inset_0_1px_4px_rgba(255,255,255,0.1),_0_4px_10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer z-[70]"
+              className="md:hidden relative inline-flex h-12 w-12 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border/20 glass-card shadow-[inset_0_1px_4px_rgba(255,255,255,0.1),_0_4px_10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer z-[70]"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
             >
               <AnimatePresence mode="wait">
@@ -219,17 +219,26 @@ export function Navbar() {
               animate={{ x: 0, opacity: 1, scale: 1 }}
               exit={{ x: "100%", opacity: 0, scale: 0.95 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 z-[65] h-full w-[85%] max-w-sm glass-card shadow-[-20px_0_50px_rgba(0,0,0,0.2)] md:hidden flex flex-col border-l border-white/10"
+              className="fixed top-0 right-0 z-[65] h-[100dvh] w-[85%] max-w-sm glass-card shadow-[-20px_0_50px_rgba(0,0,0,0.2)] md:hidden flex flex-col border-l border-white/10"
               role="dialog"
               aria-modal="true"
             >
-              <div className="flex items-center gap-3 p-6 sm:p-8 border-b border-border/10">
-                <div className="relative h-12 w-12">
-                  <Image src="/images/logo.png" alt="IgnoVex Logo" fill sizes="48px" className="object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]" />
+              <div className="flex items-center justify-between p-6 sm:p-8 border-b border-border/10">
+                <div className="flex items-center gap-3">
+                  <div className="relative h-12 w-12">
+                    <Image src="/images/logo.png" alt="IgnoVex Logo" fill sizes="48px" className="object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]" />
+                  </div>
+                  <span className="text-xl tracking-tight">
+                    <span className="font-semibold">Igno</span><span className="font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-500">Vex</span>
+                  </span>
                 </div>
-                <span className="text-xl tracking-tight">
-                  <span className="font-semibold">Igno</span><span className="font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-500">Vex</span>
-                </span>
+                <button
+                  onClick={() => setMobileOpen(false)}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-muted/30 hover:bg-muted/50 transition-colors cursor-pointer"
+                  aria-label="Close menu"
+                >
+                  <X className="h-5 w-5" />
+                </button>
               </div>
 
               <div className="flex-1 overflow-y-auto py-8 px-6 sm:px-8">

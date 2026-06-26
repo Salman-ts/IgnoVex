@@ -296,6 +296,7 @@
     /* Cap blob size on small viewports to prevent overflow */
     max-width: min(100vw, 800px);
     max-height: min(100vh, 800px);
+    will-change: transform, border-radius;
   }
   
   .dark .blob {

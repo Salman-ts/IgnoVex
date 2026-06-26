@@ -20,8 +20,8 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       
       {/* 3D Organic Background Blob */}
-      <div className="fixed top-[-20%] right-[-10%] blob w-[80vw] h-[80vw] md:w-[800px] md:h-[800px] bg-primary/20 z-[-1]" />
-      <div className="fixed bottom-[-20%] left-[-10%] blob w-[60vw] h-[60vw] md:w-[600px] md:h-[600px] bg-indigo-500/10 z-[-1]" style={{ animationDelay: "3s" }} />
+      <div className="!fixed top-[-20%] right-[-10%] blob w-[80vw] h-[80vw] md:w-[800px] md:h-[800px] bg-primary/20 z-[-1]" />
+      <div className="!fixed bottom-[-20%] left-[-10%] blob w-[60vw] h-[60vw] md:w-[600px] md:h-[600px] bg-indigo-500/10 z-[-1]" style={{ animationDelay: "3s" }} />
 
       {/* ===== HERO SECTION ===== */}
       <section ref={heroRef} className="relative pt-28 sm:pt-36 lg:pt-48 pb-16 sm:pb-24 lg:pb-32 overflow-hidden border-b border-border/10">
@@ -37,7 +37,7 @@ export default function Home() {
                 Empowering the Next Generation of Healthcare Leaders
               </div>
               
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter mb-6 sm:mb-8 bg-clip-text text-transparent bg-gradient-to-br from-foreground via-foreground/90 to-primary drop-shadow-sm leading-[1.1]">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tighter mb-6 sm:mb-8 bg-clip-text text-transparent bg-gradient-to-br from-foreground via-foreground/90 to-primary drop-shadow-sm leading-[1.1]">
                 Ignite Healthcare & <br className="hidden sm:block" />
                 <span className="text-gradient font-black">Innovation Forum.</span>
               </h1>
@@ -67,7 +67,7 @@ export default function Home() {
       {/* ===== STATISTICS SECTION ===== */}
       <section className="py-16 sm:py-20 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {[
               { label: "Active Students", value: "45K+", color: "from-emerald-400 to-teal-500" },
               { label: "Hospital Visits", value: "20+", color: "from-blue-400 to-indigo-500" },

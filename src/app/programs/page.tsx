@@ -96,7 +96,7 @@ export default function ProgramsPage() {
                 key={prog.id}
                 initial={{ opacity: 0, y: 40, rotateX: 10 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, delay: i * 0.1, type: "spring" }}
                 className="card-3d glass-card rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-8 lg:p-10 relative overflow-hidden group border border-border/10 flex flex-col"
               >
